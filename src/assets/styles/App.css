@@ -1,0 +1,10 @@
+.main{
+  min-height: 32rem;
+}
+.login-layout{
+  height: 32rem;
+}
+.login-card{
+ width: 350px;
+  border-radius: 10px;
+}
