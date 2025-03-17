@@ -1,54 +1,49 @@
-# React + TypeScript + Vite
+# Film Recensionsplattform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Detta projekt är en filmrecensionsplattform som gör det möjligt för användare att logga in, registrera sig, skriva recensioner och läsa recensioner om filmer. Användare kan även uppdatera och radera sina recensioner. Projektet använder sig av React, React Router, Axios, och en backend byggd med Express och MySQL.
 
-Currently, two official plugins are available:
+## Funktioner
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Inloggning och Registrering:** Användare kan skapa ett konto och logga in.
+- **Filmdetaljer:** Användare kan se detaljer om filmer från OMDb API.
+- **Recensioner:** Användare kan skriva, läsa, uppdatera och radera recensioner för filmer.
+- **Skyddade sidor:** Endast inloggade användare kan skriva, uppdatera eller radera recensioner.
 
-## Expanding the ESLint configuration
+## Teknologier
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend:**
+  - React
+  - TypeScript
+  - React Router
+  - Axios
+  - Bootstrap 
+  
+- **Backend:**
+  - Node.js
+  - Express
+  - MySQL
+  - OMDb API för att hämta filminformation
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Installation
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### För frontend:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. npm install
+2. npm run dev
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+   Webbsidan kommer att vara tillgänglig på http://localhost:3000.
+### För backend: 
+Registrera: Skapa ett nytt konto genom att fylla i e-post, användarnamn och lösenord på registreringssidan.
+Logga in: Använd ditt registrerade konto för att logga in.
+Recensioner: Skriv recensioner för filmer. Du kan även uppdatera eller radera dina egna recensioner om du är inloggad.
+
+## Vägledning för utvecklare
+Filstrukturen:
+
+src/: Innehåller all frontend-kod.
+src/pages/: Sidor som används för navigering i appen.
+src/components/: Återanvändbara komponenter, som exempelvis en Layout-komponent.
+src/assets/: För bilder och CSS-filer.
+PrivateRoute-komponenten: Används för att skydda sidor som kräver inloggning.
+
+
