@@ -31,7 +31,6 @@ Detta projekt är en filmrecensionsplattform som gör det möjligt för använda
 1. npm install
 2. npm run dev
 
-   Webbsidan kommer att vara tillgänglig på http://localhost:3000.
 ### För backend: 
 Registrera: Skapa ett nytt konto genom att fylla i e-post, användarnamn och lösenord på registreringssidan.
 Logga in: Använd ditt registrerade konto för att logga in.
