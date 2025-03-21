@@ -55,6 +55,7 @@ const Home = () => {
 
         {/* Visa en laddningsindikator om filmerna fortfarande hämtas */}
         {loading && <p>Laddar...</p>}
+        <h3 >Ingen film hittades!</h3>
 
         {/* Om det finns några filmer, rendera listan */}
         {movies && (
