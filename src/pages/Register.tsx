@@ -22,6 +22,7 @@ const Register = () => {
         username,
         password,
       });
+      alert("Konto registrerat!")
       navigate("/");// Vid lyckad registrering navigera användaren till inloggningssidan
     } catch (err: unknown) {
        // Om ett fel inträffar, visa ett felmeddelande
