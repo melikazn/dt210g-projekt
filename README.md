@@ -1,13 +1,13 @@
 # Film Recensionsplattform
 
-Detta projekt är en filmrecensionsplattform som gör det möjligt för användare att logga in, registrera sig, skriva recensioner och läsa recensioner om filmer. Användare kan även uppdatera och radera sina recensioner. Projektet använder sig av React, React Router, Axios, och en backend byggd med Express och MySQL.
+Detta projekt är en filmrecensionsplattform som gör det möjligt för användare att logga in, registrera sig, skriva recensioner och läsa recensioner om filmer. Användare kan även uppdatera och radera sina recensioner. Besökaren kan söka film, läsa detaljer och recensioner men kan inte lägga till någon recension. Projektet använder sig av React, React Router, Axios, och en backend byggd med Express och MySQL.
 
 ## Funktioner
 
 - **Inloggning och Registrering:** Användare kan skapa ett konto och logga in.
-- **Filmdetaljer:** Användare kan se detaljer om filmer från OMDb API.
-- **Recensioner:** Användare kan skriva, läsa, uppdatera och radera recensioner för filmer.
-- **Skyddade sidor:** Endast inloggade användare kan skriva, uppdatera eller radera recensioner.
+- **Filmdetaljer:** Användare och besökare kan se detaljer om filmer från OMDb API.
+- **Recensioner:** Användare kan skriva, läsa, uppdatera och radera recensioner för filmer. Besökare kan läsa recensioner. 
+- **Skyddade delar:** Endast inloggade användare kan skriva, uppdatera eller radera recensioner.
 
 ## Teknologier
 
