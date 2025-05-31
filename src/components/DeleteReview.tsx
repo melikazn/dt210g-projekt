@@ -1,31 +1,38 @@
-import axios from 'axios';
+import axios from "axios";
+// Importera ikon för bättre design
+import { Trash2 } from "lucide-react"; 
 
-// Definierar props för DeleteReview-komponenten
+// Props för komponenten
 interface DeleteReviewProps {
-  reviewId: number; // ID för recensionen som ska raderas
-  onDelete: (id: number) => void; // Funktion som anropas efter att recensionen raderats
+  reviewId: number;
+  onDelete: (id: number) => void;
 }
 
-// Funktionell komponent för att hantera radering av en recension
+// Komponent som hanterar borttagning av recension
 const DeleteReview = ({ reviewId, onDelete }: DeleteReviewProps) => {
-  
-  // Funktion som hanterar radering av en recension
   const handleDelete = async () => {
     try {
-      const token = localStorage.getItem('token'); // Hämta autentiseringstoken från localStorage
+      const token = localStorage.getItem("token");
 
-      // Skicka DELETE-förfrågan till servern för att radera recensionen
-      await axios.delete(`http://localhost:3000/reviews/${reviewId}`, { //Port till backend är 3000
-        headers: { Authorization: `Bearer ${token}` }, // Skicka token för autentisering
+      await axios.delete(`http://localhost:3000/reviews/${reviewId}`, {
+        headers: { Authorization: `Bearer ${token}` },
       });
 
-      onDelete(reviewId); // Anropa onDelete-funktionen för att uppdatera UI:t efter borttagning
+      onDelete(reviewId);
     } catch (error) {
-      console.error('Fel vid radering av recension', error); // Logga fel om något går fel vid raderingen
+      console.error("Fel vid radering av recension", error);
     }
   };
 
-  return <button onClick={handleDelete}>Ta bort</button>; // Knapp för att radera recensionen
+  return (
+    <button
+      onClick={handleDelete}
+      className="btn btn-sm btn-outline-danger d-flex align-items-center gap-1"
+      title="Ta bort recension"
+    >
+      <Trash2 size={18} />
+    </button>
+  );
 };
 
-export default DeleteReview; // Exporterar komponenten för användning i andra filer
+export default DeleteReview;
