@@ -27,35 +27,42 @@ const MovieDetails = () => {
   const [editingReviewId, setEditingReviewId] = useState<number | null>(null);
 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Hämta inloggad användares namn
-        setLoggedInUser(localStorage.getItem("username"));
+useEffect(() => {
+  const token = localStorage.getItem("token");
+  const username = localStorage.getItem("username");
 
-        // Hämta filmdata från OMDb API
-        const movieResponse = await axios.get(
-          `https://www.omdbapi.com/?i=${imdbID}&apikey=f5f1e3b7`
-        );
-        setMovie(movieResponse.data);
+  // Endast sätt loggedInUser om båda finns
+  if (token && username) {
+    setLoggedInUser(username);
+  } else {
+    setLoggedInUser(null);
+  }
 
-        // Hämta recensioner från vår backend 
-        const reviewsResponse = await axios.get(
-          `http://localhost:3000/reviews/${movieResponse.data.Title}`
-        );
+  const fetchData = async () => {
+    try {
+      // Hämta filmdata
+      const movieResponse = await axios.get(
+        `https://www.omdbapi.com/?i=${imdbID}&apikey=f5f1e3b7`
+      );
+      setMovie(movieResponse.data);
 
-        setReviews(Array.isArray(reviewsResponse.data) ? reviewsResponse.data : []);
-      } catch (error) {
-        console.error("Fel vid hämtning", error);
-        setError("Kunde inte hämta data.");
-      } finally {
-        // Avsluta laddning oavsett resultat
-        setLoading(false);
-      }
-    };
+      // Hämta recensioner
+      const reviewsResponse = await axios.get(
+        `http://localhost:3000/reviews/${movieResponse.data.Title}`
+      );
 
-    fetchData();
-  }, [imdbID]);
+      setReviews(Array.isArray(reviewsResponse.data) ? reviewsResponse.data : []);
+    } catch (error) {
+      console.error("Fel vid hämtning", error);
+      setError("Kunde inte hämta data.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchData();
+}, [imdbID]);
+
 
   // Hantera borttagning av recension
   const handleDeleteReview = (id: number) => {
