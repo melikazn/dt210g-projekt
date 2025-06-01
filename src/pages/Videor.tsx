@@ -19,32 +19,36 @@ const Videor = () => {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
+  const [error, setError] = useState<string | null>(null);
   const moviesPerPage = 10;
 
   // Funktion som hämtar filmer från OMDb API
   const searchMovies = async (page: number = 1) => {
-    if (!search.trim()) return; // Avbryt om fältet är tomt
+    if (!search.trim()) return;
     setLoading(true);
+    setError(null);
+
     try {
       const response = await axios.get(
         `https://www.omdbapi.com/?s=${search}&page=${page}&apikey=f5f1e3b7`
       );
 
       if (response.data.Response === "True") {
-        setMovies(response.data.Search || []); // Sätt filmer
-        setTotalResults(parseInt(response.data.totalResults)); // Totalt antal träffar
-        setCurrentPage(page); // Uppdatera aktuell sida
+        setMovies(response.data.Search || []);
+        setTotalResults(parseInt(response.data.totalResults));
+        setCurrentPage(page);
       } else {
         setMovies([]);
-        setTotalResults(0); // Nollställ resultat vid misslyckad sökning
+        setTotalResults(0);
+        setError("Inga filmer hittades för din sökning.");
       }
     } catch (err) {
       console.error("Fel vid hämtning av filmer", err);
+      setError("Ett fel uppstod vid hämtning av filmer.");
     } finally {
-      setLoading(false); // Avsluta laddning
+      setLoading(false);
     }
   };
-
   // Beräkna totalt antal sidor baserat på antal filmer per sida
   const totalPages = Math.ceil(totalResults / moviesPerPage);
 
@@ -72,8 +76,13 @@ const Videor = () => {
             Sök
           </button>
         </form>
-
-        {/* Visa filmillustration om det inte finns sökresultat */}
+        {/* Felmeddelande */}
+        {error && (
+          <div className="alert alert-warning text-center" role="alert">
+            {error}
+          </div>
+        )}
+        {/* Visa filmillustration är kvar om ingen resultat finns */}
         {!loading && movies.length === 0 && (
           <div className="text-center">
             <img
